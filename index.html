@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Buka IG</title>
+  <title>Buka Instagram di Aplikasi</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       margin: 0;
-      padding: 0;
+      padding: 30px 20px;
       background-color: #fafafa;
       font-family: sans-serif;
       text-align: center;
     }
-    
     h2 {
       font-size: 22px;
       margin-bottom: 30px;
-      padding: 0 20px;
     }
-
     input {
       padding: 20px;
       font-size: 18px;
@@ -29,7 +26,6 @@
       box-sizing: border-box;
       margin-bottom: 20px;
     }
-
     button {
       padding: 20px;
       font-size: 18px;
@@ -41,25 +37,26 @@
       border-radius: 10px;
       cursor: pointer;
     }
-
     button:hover {
       background-color: #2f80ed;
     }
   </style>
 </head>
 <body>
-  <h2>Masukkan Link IG</h2>
-  <input type="text" id="linkInput" placeholder="https://www.instagram.com/reel/xxxx/" />
-  <button onclick="bukaIG()">Buka di Instagram</button>
+  <h2>Masukkan Link Instagram</h2>
+  <input type="text" id="linkInput" placeholder="https://www.instagram.com/p/xxxxx/" />
+  <br>
+  <button onclick="bukaIG()">Buka di Aplikasi Instagram</button>
 
   <script>
     function bukaIG() {
       let url = document.getElementById("linkInput").value.trim();
-      if (!url.startsWith("https://www.instagram.com/reel/")) {
-        alert("Masukkan link Reels Instagram yang valid!");
+      if (!url.includes("instagram.com/")) {
+        alert("Masukkan link Instagram yang valid!");
         return;
       }
 
+      // Hapus https:// dan trailing slash
       let path = url.replace("https://", "").replace(/\/+$/, "");
       let intentURL = `intent://${path}/#Intent;package=com.instagram.android;scheme=https;end;`;
       window.location.href = intentURL;
